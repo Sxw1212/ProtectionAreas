@@ -1,4 +1,3 @@
-
 -- Storage.lua
 -- Implements the storage access object, shielding the rest of the code away from the DB
 
@@ -59,7 +58,8 @@ function cStorage:OpenDB()
 	
 	if (
 		not(self:CreateTable("Areas", {"ID INTEGER PRIMARY KEY AUTOINCREMENT", "MinX", "MaxX", "MinZ", "MaxZ", "WorldName", "CreatorUserName"})) or
-		not(self:CreateTable("AllowedUsers", {"AreaID", "UserName"}))
+		not(self:CreateTable("AllowedUsers", {"AreaID", "UserName"})) or
+		not(self:CreateTable("AreaFlags", {"AreaID", "FlagName", "FlagValue"}))
 	) then
 		LOGWARNING(PluginPrefix .. "Cannot create DB tables!");
 		return false;
